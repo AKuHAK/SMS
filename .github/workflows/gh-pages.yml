@@ -1,0 +1,26 @@
+name: github pages
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Install dependencies
+      run: apk add docbook-xml
+
+    - uses: actions/checkout@v2
+
+    - name: Docbook documentation generation
+      run: make -C docs
+
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: docs/html
+        force_orphan: true

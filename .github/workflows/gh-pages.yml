@@ -9,7 +9,7 @@ jobs:
 
     steps:
     - name: Install dependencies
-      run: sudo apt-get -y install 
+      run: sudo apt-get -y install xsltproc docbook-xml
 
     - uses: actions/checkout@v2
 

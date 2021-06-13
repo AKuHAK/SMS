@@ -2,6 +2,10 @@ name: github pages
 
 on:
   push:
+    branches:
+      - master
+    paths:
+      - 'docs/**'
 
 jobs:
   build:
@@ -9,7 +13,7 @@ jobs:
 
     steps:
     - name: Install dependencies
-      run: sudo apt-get -y install xsltproc docbook-xml
+      run: apk add docbook-xml
 
     - uses: actions/checkout@v2
 

@@ -9,13 +9,12 @@ jobs:
 
     steps:
     - name: Install dependencies
-      run: apk add docbook-xml
+      run: sudo apt-get -y install 
 
     - uses: actions/checkout@v2
 
     - name: Docbook documentation generation
-      run: |
-        make -C docs
+      run: make -C docs
 
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3

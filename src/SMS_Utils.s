@@ -442,20 +442,20 @@ pcm_syn1:
     beq   $at, $zero, 1f
     andi  $a2, $a2, 15
 2:
-    lqc2  $vf01,  0($a1)
-    lqc2  $vf02, 16($a1)
-    lqc2  $vf03, 32($a1)
-    lqc2  $vf04, 48($a1)
+    lqc2  $vf1,  0($a1)
+    lqc2  $vf2, 16($a1)
+    lqc2  $vf3, 32($a1)
+    lqc2  $vf4, 48($a1)
     addiu $a1, $a1, 64
     addiu $at, $at, -1
-    vftoi0.xyzw   $vf01, $vf01
-    vftoi0.xyzw   $vf02, $vf02
-    vftoi0.xyzw   $vf03, $vf03
-    vftoi0.xyzw   $vf04, $vf04
-    qmfc2 $t0, $vf01
-    qmfc2 $t1, $vf02
-    qmfc2 $t2, $vf03
-    qmfc2 $t3, $vf04
+    vftoi0.xyzw   $vf1, $vf1
+    vftoi0.xyzw   $vf2, $vf2
+    vftoi0.xyzw   $vf3, $vf3
+    vftoi0.xyzw   $vf4, $vf4
+    qmfc2 $t0, $vf1
+    qmfc2 $t1, $vf2
+    qmfc2 $t2, $vf3
+    qmfc2 $t3, $vf4
     pmaxw $t0, $v0, $t0
     pmaxw $t1, $v0, $t1
     pmaxw $t2, $v0, $t2
@@ -498,21 +498,21 @@ pcm_syn2:
     beq   $at, $zero, 1f
     andi  $a2, $a2, 7
 2:
-    lqc2  $vf01,  0($a3)
-    lqc2  $vf02, 16($a3)
-    lqc2  $vf03,  0($a1)
-    lqc2  $vf04, 16($a1)
+    lqc2  $vf1,  0($a3)
+    lqc2  $vf2, 16($a3)
+    lqc2  $vf3,  0($a1)
+    lqc2  $vf4, 16($a1)
     addiu $a3, $a3, 32
     addiu $a1, $a1, 32
-    vftoi0.xyzw   $vf01, $vf01
-    vftoi0.xyzw   $vf02, $vf02
-    vftoi0.xyzw   $vf03, $vf03
-    vftoi0.xyzw   $vf04, $vf04
+    vftoi0.xyzw   $vf1, $vf1
+    vftoi0.xyzw   $vf2, $vf2
+    vftoi0.xyzw   $vf3, $vf3
+    vftoi0.xyzw   $vf4, $vf4
     addiu $at, $at, -1
-    qmfc2 $t0, $vf01
-    qmfc2 $t1, $vf02
-    qmfc2 $t2, $vf03
-    qmfc2 $t3, $vf04
+    qmfc2 $t0, $vf1
+    qmfc2 $t1, $vf2
+    qmfc2 $t2, $vf3
+    qmfc2 $t3, $vf4
     pmaxw $t0, $v0, $t0
     pmaxw $t1, $v0, $t1
     pmaxw $t2, $v0, $t2
@@ -556,8 +556,8 @@ pcm_synN:
     lw      $t5,  4($a1)                # t5 = ch1
     lw      $a3,  8($a1)                # a3 = ch2
     lw      $t0, 12($a1)                # t0 = ch3
-    lqc2    $vf01,  0($t1)              # vf01 = DM_MUL
-    lqc2    $vf02, 16($t1)              # vf02 = RSQRT2 * DM_MUL
+    lqc2    $vf1,  0($t1)              # vf01 = DM_MUL
+    lqc2    $vf2, 16($t1)              # vf02 = RSQRT2 * DM_MUL
     lw      $t1, 16($a1)                # t1 = ch4
     lw      $a1,  0($a1)                # a1 = ch0
     addu    $t4, $t5, $a2
@@ -566,26 +566,26 @@ pcm_synN:
     psrlw   $v1, $v1, 17
     psraw   $v0, $v0, 16
 1:
-    lqc2    $vf03, 0($t5)               # vf03 = ch1
-    lqc2    $vf04, 0($a1)               # vf04 = ch0
-    lqc2    $vf05, 0($t0)               # vf05 = ch3
-    lqc2    $vf06, 0($a3)               # vf06 = ch2
-    lqc2    $vf07, 0($t1)               # vf07 = ch4
-    vmula.xyzw  ACC, $vf03, $vf01
-    vmadda.xyzw ACC, $vf04, $vf02
-    vmadd.xyzw  $vf03, $vf05, $vf02
-    vmula.xyzw  ACC, $vf06, $vf01
-    vmadda.xyzw ACC, $vf04, $vf02
-    vmadd.xyzw  $vf04, $vf07, $vf02
-    vftoi0.xyzw $vf03, $vf03
+    lqc2    $vf3, 0($t5)               # vf03 = ch1
+    lqc2    $vf4, 0($a1)               # vf04 = ch0
+    lqc2    $vf5, 0($t0)               # vf05 = ch3
+    lqc2    $vf6, 0($a3)               # vf06 = ch2
+    lqc2    $vf7, 0($t1)               # vf07 = ch4
+    vmula.xyzw  ACC, $vf3, $vf1
+    vmadda.xyzw ACC, $vf4, $vf2
+    vmadd.xyzw  $vf3, $vf5, $vf2
+    vmula.xyzw  ACC, $vf6, $vf1
+    vmadda.xyzw ACC, $vf4, $vf2
+    vmadd.xyzw  $vf4, $vf7, $vf2
+    vftoi0.xyzw $vf3, $vf3
     addiu   $t5, $t5, 16
     addiu   $a1, $a1, 16
-    vftoi0.xyzw $vf04, $vf04
+    vftoi0.xyzw $vf4, $vf4
     addiu   $t0, $t0, 16
     addiu   $a3, $a3, 16
     addiu   $t1, $t1, 16
-    qmfc2   $t2, $vf03
-    qmfc2   $t3, $vf04
+    qmfc2   $t2, $vf3
+    qmfc2   $t3, $vf4
     pmaxw   $t2, $v0, $t2
     pmaxw   $t3, $v0, $t3
     pminw   $t2, $v1, $t2

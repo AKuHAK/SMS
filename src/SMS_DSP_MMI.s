@@ -83,16 +83,16 @@ DSP_PackMB:
     addiu   $at, $at, -1
     addiu   $v0, $zero, 4
 1:
-    qmfc2.i $t0, $vf01
+    qmfc2.i $t0, $vf1
     ctc2    $v1, $vi06
     qfsrv   $v1, $v1, $v1
-    qmfc2   $t1, $vf02
-    qmfc2   $t2, $vf03
-    qmfc2   $t3, $vf04
-    qmfc2   $t4, $vf05
-    qmfc2   $t5, $vf06
-    qmfc2   $t6, $vf07
-    qmfc2   $t7, $vf08
+    qmfc2   $t1, $vf2
+    qmfc2   $t2, $vf3
+    qmfc2   $t3, $vf4
+    qmfc2   $t4, $vf5
+    qmfc2   $t5, $vf6
+    qmfc2   $t6, $vf7
+    qmfc2   $t7, $vf8
     .word   0x4A0028B8
     ppach   $t0, $t1, $t0
     ppach   $t2, $t3, $t2
@@ -153,22 +153,22 @@ DSP_PackMB:
 _dsp_pack_addY:  # a0 - apDst, vi01 - vuMem, v0 - 255
     addiu   $at, $zero, 2
 1:
-    vlqi    $vf01, ($vi01++)
-    vlqi    $vf02, ($vi01++)
-    vlqi    $vf03, ($vi01++)
-    vlqi    $vf04, ($vi01++)
-    vlqi    $vf05, ($vi01++)
-    vlqi    $vf06, ($vi01++)
-    vlqi    $vf07, ($vi01++)
-    vlqi    $vf08, ($vi01++)
-    qmfc2   $t0, $vf01
-    qmfc2   $t1, $vf02
-    qmfc2   $t2, $vf03
-    qmfc2   $t3, $vf04
-    qmfc2   $t4, $vf05
-    qmfc2   $t5, $vf06
-    qmfc2   $t6, $vf07
-    qmfc2   $t7, $vf08
+    vlqi    $vf1, ($vi01++)
+    vlqi    $vf2, ($vi01++)
+    vlqi    $vf3, ($vi01++)
+    vlqi    $vf4, ($vi01++)
+    vlqi    $vf5, ($vi01++)
+    vlqi    $vf6, ($vi01++)
+    vlqi    $vf7, ($vi01++)
+    vlqi    $vf8, ($vi01++)
+    qmfc2   $t0, $vf1
+    qmfc2   $t1, $vf2
+    qmfc2   $t2, $vf3
+    qmfc2   $t3, $vf4
+    qmfc2   $t4, $vf5
+    qmfc2   $t5, $vf6
+    qmfc2   $t6, $vf7
+    qmfc2   $t7, $vf8
     ppach   $t0, $t1, $t0
     ld      $t1,  0($a0)
     ppach   $t2, $t3, $t2
@@ -209,22 +209,22 @@ _dsp_pack_addY:  # a0 - apDst, vi01 - vuMem, v0 - 255
 _dsp_pack_addC:  # a0 - apDst, vi01 - vuMem, v0 - 255
     addiu   $at, $zero, 2
 1:
-    vlqi    $vf01, ($vi01++)
-    vlqi    $vf02, ($vi01++)
-    vlqi    $vf03, ($vi01++)
-    vlqi    $vf04, ($vi01++)
-    vlqi    $vf05, ($vi01++)
-    vlqi    $vf06, ($vi01++)
-    vlqi    $vf07, ($vi01++)
-    vlqi    $vf08, ($vi01++)
-    qmfc2   $t0, $vf01
-    qmfc2   $t1, $vf02
-    qmfc2   $t2, $vf03
-    qmfc2   $t3, $vf04
-    qmfc2   $t4, $vf05
-    qmfc2   $t5, $vf06
-    qmfc2   $t6, $vf07
-    qmfc2   $t7, $vf08
+    vlqi    $vf1, ($vi01++)
+    vlqi    $vf2, ($vi01++)
+    vlqi    $vf3, ($vi01++)
+    vlqi    $vf4, ($vi01++)
+    vlqi    $vf5, ($vi01++)
+    vlqi    $vf6, ($vi01++)
+    vlqi    $vf7, ($vi01++)
+    vlqi    $vf8, ($vi01++)
+    qmfc2   $t0, $vf1
+    qmfc2   $t1, $vf2
+    qmfc2   $t2, $vf3
+    qmfc2   $t3, $vf4
+    qmfc2   $t4, $vf5
+    qmfc2   $t5, $vf6
+    qmfc2   $t6, $vf7
+    qmfc2   $t7, $vf8
     ppach   $t0, $t1, $t0
     ld      $t1,  0($a0)
     ppach   $t2, $t3, $t2
@@ -276,7 +276,7 @@ DSP_PackAddMB:
     psrlh   $v0, $v0, 8
     lb      $at, 0x0890($a1)
     addiu   $v1, $zero, 16
-    qmfc2.i $zero, $vf00
+    qmfc2.i $zero, $vf0
     bgezall $at, _dsp_pack_addY
     ctc2    $v1, $vi01
     lb      $at, 0x0892($a1)
